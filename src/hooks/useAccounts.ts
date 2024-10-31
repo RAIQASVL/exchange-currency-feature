@@ -8,31 +8,20 @@ export function useAccounts() {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    let mounted = true;
-
     async function loadAccounts() {
       try {
         const data = await getAccounts();
-        if (mounted) {
-          setAccounts(data);
-        }
+        setAccounts(data);
       } catch (err) {
-        if (mounted) {
-          setError(
-            err instanceof Error ? err : new Error("Failed to load accounts")
-          );
-        }
+        setError(
+          err instanceof Error ? err : new Error("Failed to load accounts")
+        );
       } finally {
-        if (mounted) {
-          setLoading(false);
-        }
+        setLoading(false);
       }
     }
 
     loadAccounts();
-    return () => {
-      mounted = false;
-    };
   }, []);
 
   return { accounts, loading, error };
