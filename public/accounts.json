@@ -1,0 +1,5 @@
+[
+  { "id": "1", "name": "USD Account", "currency": "USD", "balance": 1000 },
+  { "id": "2", "name": "EUR Account", "currency": "EUR", "balance": 2000 },
+  { "id": "3", "name": "GBP Account", "currency": "GBP", "balance": 3000 }
+]

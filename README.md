@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Overview
 
-## Getting Started
+In this task, your objective is to build a currency exchange feature using React and TypeScript. The feature allows users to select accounts, enter an amount, and perform a currency conversion based on exchange rates fetched from a mock API (your local host, mock data is located in **public** folder). You'll be required to handle form validation, manage loading states, fetch necessary data, and ensure that the currency conversion is executed with a debounced function call.
 
-First, run the development server:
+# Requirements
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Fetch and Display Accounts:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Implement an API call to fetch account details (you will need to define the mock API).
+Populate the "From Account" and "To Account" dropdowns with the accounts fetched from this API.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Form Validation:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Implement basic validation to ensure that an account is selected for both "From Account" and "To Account."
+Ensure that the amount entered does not exceed the balance available in the selected "From Account."
+Display appropriate error messages if validation fails.
 
-## Learn More
+## Loading States:
 
-To learn more about Next.js, take a look at the following resources:
+Display a loading indicator while fetching accounts and exchange rates.
+Disable form inputs during the loading state to prevent user interaction.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Fetch Exchange Rates:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Use an API call to fetch exchange rates. You'll need to integrate this into your form handling logic.
+Store the fetched exchange rates in the component's state and ensure they are up-to-date.
 
-## Deploy on Vercel
+## Simulate Conversion with Debounce:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Implement the currency conversion logic with a debounced function call. The conversion should be triggered by changes in form values (account selections or amount).
+Display the conversion result, including the original amount, converted amount, exchange rate, and fee, above the "Convert" button.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Form Submission:
+
+Upon form submission, validate the input and show the conversion result. No additional action is required after submission since this is a simulation.
+
+## Provided Code:
+
+You are provided with a starting point for the task, including mock data and functions. However, you will need to make key decisions and implementations to meet the requirements.
+
+# It will be a plus if you:
+
+- **Refactor** the code to make it more readable and maintainable.
+- Use TypeScript to ensure **strict type checking** and catch potential errors early.
+- Use **Feature-Sliced (or Module, or Clean) architecture** to separate concerns and improve code organization.
+- Set up **linting and configuration** to catch potential issues early.
+- **Test** the code thoroughly to ensure it works as expected.
+- **Document** the code to make it easier to understand and maintain.
+- **Optimize** the code for performance and efficiency.
+- Design a **user-friendly interface** that is easy to use.
+- Use any libraries and tools to **speed up development**.
