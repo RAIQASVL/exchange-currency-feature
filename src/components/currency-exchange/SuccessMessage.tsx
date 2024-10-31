@@ -1,10 +1,10 @@
-import { ConversionResult } from "@/types";
+import { ConversionResult, Currency } from "@/types";
 import { formatCurrency } from "@/utils/formatters";
 
 interface SuccessMessageProps {
     result: ConversionResult;
-    fromCurrency: string;
-    toCurrency: string;
+    fromCurrency: Currency;
+    toCurrency: Currency;
     transactionId: string;
 }
 

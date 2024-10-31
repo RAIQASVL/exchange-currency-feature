@@ -6,8 +6,6 @@ export interface Account {
 }
 
 export type Currency = "USD" | "EUR" | "GBP";
-export type ExchangeRateKey = `${Currency}-${Currency}`;
-export type ExchangeRates = Record<ExchangeRateKey, number>;
 
 export interface ConversionResult {
   fromAmount: number;
@@ -16,7 +14,11 @@ export interface ConversionResult {
   fee: number;
 }
 
-export interface ConversionFormData {
+export type ExchangeRates = {
+  [K in `${Currency}-${Currency}`]?: number;
+};
+
+export interface ConversionParams {
   fromAccountId: string;
   toAccountId: string;
   amount: string;

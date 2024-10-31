@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Account } from "@/types";
+import { getAccounts } from "@/lib/api/mock";
 
 export function useAccounts() {
   const [accounts, setAccounts] = useState<Account[]>([]);
@@ -7,20 +8,31 @@ export function useAccounts() {
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    async function fetchAccounts() {
+    let mounted = true;
+
+    async function loadAccounts() {
       try {
-        const response = await fetch("/accounts.json");
-        if (!response.ok) throw new Error("Failed to fetch accounts");
-        const data = await response.json();
-        setAccounts(data);
+        const data = await getAccounts();
+        if (mounted) {
+          setAccounts(data);
+        }
       } catch (err) {
-        setError(err instanceof Error ? err : new Error("Unknown error"));
+        if (mounted) {
+          setError(
+            err instanceof Error ? err : new Error("Failed to load accounts")
+          );
+        }
       } finally {
-        setLoading(false);
+        if (mounted) {
+          setLoading(false);
+        }
       }
     }
 
-    fetchAccounts();
+    loadAccounts();
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   return { accounts, loading, error };
